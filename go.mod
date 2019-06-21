@@ -1,4 +1,4 @@
-module github.com/xiangrui2019/go-limiter
+module github.com/xiangrui2019/go_limiter
 
 go 1.12
 
