@@ -14,7 +14,7 @@ func LimiterMiddleware(serviceName string, client redis.Client, limit int64, dur
 	}
 
 	return func(context *gin.Context) {
-		err := limiterservice.Limit(serviceName, context.ClientIP(), limit, duration)
+		err := limiterservice.Limit(serviceName, context.ClientIP()+context.Request.Method+context.Request.RequestURI, limit, duration)
 
 		if err != nil {
 			context.AbortWithStatus(400)
