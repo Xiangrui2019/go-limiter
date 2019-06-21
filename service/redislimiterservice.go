@@ -12,6 +12,17 @@ type RedisLimiterService struct {
 	client redis.Client
 }
 
+func NewRedisLimiter(client redis.Client) (*RedisLimiterService, error) {
+	service := new(RedisLimiterService)
+	service.ctx = context.Background()
+	service.client = client
+	err := service.client.Ping(service.ctx)
+	if err != nil {
+		return nil, err
+	}
+	return service, nil
+}
+
 func (service *RedisLimiterService) Limit(serviceName string, clientid string, limit int64, duration int32) error {
 	var sum int64
 	var err error
