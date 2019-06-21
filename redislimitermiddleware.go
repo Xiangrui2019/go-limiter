@@ -1,13 +1,12 @@
-package middleware
+package main
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/xiangrui2019/go-limiter/service"
 	"github.com/xiangrui2019/redis"
 )
 
 func LimiterMiddleware(serviceName string, client redis.Client, limit int64, duration int32) func(context *gin.Context) {
-	limiterservice, err := service.NewRedisLimiter(client)
+	limiterservice, err := NewRedisLimiter(client)
 
 	if err != nil {
 		panic(err)
