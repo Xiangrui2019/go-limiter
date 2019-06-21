@@ -1,4 +1,4 @@
-package main
+package go_limiter
 
 import (
 	"github.com/gin-gonic/gin"
